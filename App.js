@@ -25,7 +25,7 @@ export default function App() {
       >
         {userNumber ? (
           <SafeAreaView style={styles.rootScreen}>
-            <GameScreen />
+            <GameScreen userNumber={userNumber} />
           </SafeAreaView>
         ) : (
           <SafeAreaView style={styles.rootScreen}>
