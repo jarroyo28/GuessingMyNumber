@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Text, StyleSheet, View, Alert } from "react-native";
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
@@ -15,6 +15,12 @@ let maxBoundary = 100;
 const GameScreen = (props) => {
   const intialGuess = generateRandomNumber(minBoundary, maxBoundary);
   const [guessedNumber, setGuessedNumber] = useState(intialGuess);
+
+  useEffect(() => {
+    if (guessedNumber === props.userNumber) {
+      props.onGameOver();
+    }
+  }, [guessedNumber, props.userNumber, props.onGameOver]); // whenever any of these variables change, the useEffect will be executed
 
   const handleNewGuess = (direction) => {
     if (
